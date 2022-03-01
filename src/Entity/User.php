@@ -9,9 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="type", type="string")
+ * @DiscriminatorMap({"member" = "Member", "librarian" = "Librarian", "visitor" = "Visitor"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -56,6 +62,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $recommandation;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity=Logs::class, mappedBy="user")
+     */
+    private $logs;
+
     /**
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="author")
      */
@@ -67,18 +79,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $emprunts;
 
     /**
-     * @ORM\OneToMany(targetEntity=Logs::class, mappedBy="user")
+     * @ORM\Column(type="string", length=255)
      */
-    private $logs;
+    private $name;
 
     public function __construct()
     {
         $this->rencontres = new ArrayCollection();
         $this->reserved = new ArrayCollection();
         $this->recommandation = new ArrayCollection();
+        $this->logs = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->emprunts = new ArrayCollection();
-        $this->logs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -105,7 +117,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -113,7 +125,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -245,6 +257,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    /**
+     * @return Collection<int, Logs>
+     */
+    public function getLogs(): Collection
+    {
+        return $this->logs;
+    }
+
+    public function addLog(Logs $log): self
+    {
+        if (!$this->logs->contains($log)) {
+            $this->logs[] = $log;
+            $log->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLog(Logs $log): self
+    {
+        if ($this->logs->removeElement($log)) {
+            // set the owning side to null (unless already changed)
+            if ($log->getUser() === $this) {
+                $log->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Comment>
      */
@@ -305,32 +348,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Logs>
-     */
-    public function getLogs(): Collection
+    public function getName(): ?string
     {
-        return $this->logs;
+        return $this->name;
     }
 
-    public function addLog(Logs $log): self
+    public function setName(string $name): self
     {
-        if (!$this->logs->contains($log)) {
-            $this->logs[] = $log;
-            $log->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLog(Logs $log): self
-    {
-        if ($this->logs->removeElement($log)) {
-            // set the owning side to null (unless already changed)
-            if ($log->getUser() === $this) {
-                $log->setUser(null);
-            }
-        }
+        $this->name = $name;
 
         return $this;
     }

@@ -18,7 +18,7 @@ class Comment
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string", length=255)
      */
     private $text;
 
@@ -30,7 +30,6 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=Document::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
      */
     private $document;
 

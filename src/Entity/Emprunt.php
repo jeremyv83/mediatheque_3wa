@@ -23,26 +23,25 @@ class Emprunt
     private $date_emprunt;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $date_remise;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $etat_remise;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=Document::class, inversedBy="emprunts")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $document;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="emprunts")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Document::class, inversedBy="emprunts")
+     */
+    private $documents;
 
     public function getId(): ?int
     {
@@ -66,33 +65,21 @@ class Emprunt
         return $this->date_remise;
     }
 
-    public function setDateRemise(\DateTimeInterface $date_remise): self
+    public function setDateRemise(?\DateTimeInterface $date_remise): self
     {
         $this->date_remise = $date_remise;
 
         return $this;
     }
 
-    public function getEtatRemise(): ?int
+    public function getEtatRemise(): ?bool
     {
         return $this->etat_remise;
     }
 
-    public function setEtatRemise(int $etat_remise): self
+    public function setEtatRemise(?bool $etat_remise): self
     {
         $this->etat_remise = $etat_remise;
-
-        return $this;
-    }
-
-    public function getDocument(): ?Document
-    {
-        return $this->document;
-    }
-
-    public function setDocument(?Document $document): self
-    {
-        $this->document = $document;
 
         return $this;
     }
@@ -105,6 +92,18 @@ class Emprunt
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getDocuments(): ?Document
+    {
+        return $this->documents;
+    }
+
+    public function setDocuments(?Document $documents): self
+    {
+        $this->documents = $documents;
 
         return $this;
     }
