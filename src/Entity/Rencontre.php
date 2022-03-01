@@ -39,6 +39,11 @@ class Rencontre
      */
     private $date;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $title;
+
     public function __construct()
     {
         $this->auteurs = new ArrayCollection();
@@ -134,6 +139,18 @@ class Rencontre
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
 
         return $this;
     }

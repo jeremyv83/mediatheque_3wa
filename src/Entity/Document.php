@@ -6,9 +6,15 @@ use App\Repository\DocumentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
 
 /**
- * @ORM\Entity(repositoryClass=DocumentRepository::class)
+ * @ORM\Entity
+ * @InheritanceType("SINGLE_TABLE")
+ * @DiscriminatorColumn(name="type", type="string")
+ * @DiscriminatorMap({"cd" = "CD", "dvd" = "DVD", "book" = "Book"})
  */
 class Document
 {
@@ -29,15 +35,6 @@ class Document
      */
     private $rencontres;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="comment")
-     */
-    private $commented_by;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="emprunt")
-     */
-    private $emprunted_by;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="reserved")
@@ -95,15 +92,14 @@ class Document
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="document")
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="documents")
      */
     private $emprunts;
+
 
     public function __construct()
     {
         $this->rencontres = new ArrayCollection();
-        $this->commented_by = new ArrayCollection();
-        $this->emprunted_by = new ArrayCollection();
         $this->reserved_by = new ArrayCollection();
         $this->recommanded_by = new ArrayCollection();
         $this->logs = new ArrayCollection();
@@ -155,59 +151,6 @@ class Document
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getCommentedBy(): Collection
-    {
-        return $this->commented_by;
-    }
-
-    public function addCommentedBy(User $commentedBy): self
-    {
-        if (!$this->commented_by->contains($commentedBy)) {
-            $this->commented_by[] = $commentedBy;
-            $commentedBy->addComment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommentedBy(User $commentedBy): self
-    {
-        if ($this->commented_by->removeElement($commentedBy)) {
-            $commentedBy->removeComment($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, User>
-     */
-    public function getEmpruntedBy(): Collection
-    {
-        return $this->emprunted_by;
-    }
-
-    public function addEmpruntedBy(User $empruntedBy): self
-    {
-        if (!$this->emprunted_by->contains($empruntedBy)) {
-            $this->emprunted_by[] = $empruntedBy;
-            $empruntedBy->addEmprunt($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEmpruntedBy(User $empruntedBy): self
-    {
-        if ($this->emprunted_by->removeElement($empruntedBy)) {
-            $empruntedBy->removeEmprunt($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, User>
@@ -419,7 +362,7 @@ class Document
     {
         if (!$this->emprunts->contains($emprunt)) {
             $this->emprunts[] = $emprunt;
-            $emprunt->setDocument($this);
+            $emprunt->setDocuments($this);
         }
 
         return $this;
@@ -429,11 +372,13 @@ class Document
     {
         if ($this->emprunts->removeElement($emprunt)) {
             // set the owning side to null (unless already changed)
-            if ($emprunt->getDocument() === $this) {
-                $emprunt->setDocument(null);
+            if ($emprunt->getDocuments() === $this) {
+                $emprunt->setDocuments(null);
             }
         }
 
         return $this;
     }
+
+
 }
