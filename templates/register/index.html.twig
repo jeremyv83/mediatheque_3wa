@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Se connecter | MediaTehk {% endblock %}
+{% block title %}S'inscrire | MediaTehk {% endblock %}
 
 {% block body %}
     <div class="hero is-fullheight has-background-primary-light">
@@ -10,11 +10,16 @@
                     <div class="box">
                         <img src="{{ asset('build/images/logo.png') }}">
                         <hr class="login-hr">
-                        <p class="subtitle has-text-black">Connectez-vous pour accéder à la médiathèque.</p>
+                        <p class="subtitle has-text-black">Inscrivez-vous pour accéder à la médiathèque.</p>
 
                         <div class="box">
-                            <div class="title has-text-grey is-6">Saisissez votre adresse email et votre mot de passe.</div>
+                            <div class="title has-text-grey is-6">Saisissez votre nom, votre adresse email et votre mot de passe.</div>
                             <form>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input is-medium" type="text" placeholder="John Doe" autofocus="">
+                                    </div>
+                                </div>
                                 <div class="field">
                                     <div class="control">
                                         <input class="input is-medium" type="email" placeholder="john.doe@gmail.com" autofocus="">
@@ -25,11 +30,10 @@
                                         <input class="input is-medium" type="password" placeholder="********">
                                     </div>
                                 </div>
-                                <button class="button is-block is-black is-medium is-fullwidth">Connexion</button>
+                                <button class="button is-block is-black is-medium is-fullwidth">Inscription</button>
                             </form>
                         </div>
-                            <a href="/register" class="has-text-black">Inscription</a> &nbsp;·&nbsp;
-                            <a href="#" class="has-text-black">Mot de passe oublié</a>
+                        <a href="/login" class="has-text-black">Connexion</a>
                     </div>
                 </div>
             </div>
