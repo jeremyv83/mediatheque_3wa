@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="#">
+      <img src="{{ asset('build/images/logo.png') }}" width="112" height="28">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbar" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Accueil
+      </a>
+
+      <a class="navbar-item">
+        Documents
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Services
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            Emprunt
+          </a>
+          <a class="navbar-item">
+            Réservation
+          </a>
+          <a class="navbar-item">
+            Proposition d'achat
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Formulaire de cession
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>S'inscrire</strong>
+          </a>
+          <a class="button is-light">
+            Se connecter
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</html>
