@@ -32,6 +32,18 @@ class Emprunt
      */
     private $etat_remise;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Document::class, inversedBy="emprunts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $document;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="emprunts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +81,30 @@ class Emprunt
     public function setEtatRemise(int $etat_remise): self
     {
         $this->etat_remise = $etat_remise;
+
+        return $this;
+    }
+
+    public function getDocument(): ?Document
+    {
+        return $this->document;
+    }
+
+    public function setDocument(?Document $document): self
+    {
+        $this->document = $document;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

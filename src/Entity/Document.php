@@ -94,6 +94,11 @@ class Document
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Emprunt::class, mappedBy="document")
+     */
+    private $emprunts;
+
     public function __construct()
     {
         $this->rencontres = new ArrayCollection();
@@ -103,6 +108,7 @@ class Document
         $this->recommanded_by = new ArrayCollection();
         $this->logs = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->emprunts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -395,6 +401,36 @@ class Document
             // set the owning side to null (unless already changed)
             if ($comment->getDocument() === $this) {
                 $comment->setDocument(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Emprunt>
+     */
+    public function getEmprunts(): Collection
+    {
+        return $this->emprunts;
+    }
+
+    public function addEmprunt(Emprunt $emprunt): self
+    {
+        if (!$this->emprunts->contains($emprunt)) {
+            $this->emprunts[] = $emprunt;
+            $emprunt->setDocument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEmprunt(Emprunt $emprunt): self
+    {
+        if ($this->emprunts->removeElement($emprunt)) {
+            // set the owning side to null (unless already changed)
+            if ($emprunt->getDocument() === $this) {
+                $emprunt->setDocument(null);
             }
         }
 
