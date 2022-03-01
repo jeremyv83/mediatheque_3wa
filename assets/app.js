@@ -9,5 +9,7 @@
 import './styles/app.css';
 import '../node_modules/bulma/css/bulma.css'
 
+import './scripts/modal'
+
 // start the Stimulus application
 import './bootstrap';
