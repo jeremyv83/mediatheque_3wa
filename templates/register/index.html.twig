@@ -8,30 +8,45 @@
             <div class="container has-text-centered">
                 <div class="column is-5 is-offset-3">
                     <div class="box">
-                        <img src="{{ asset('build/images/logo.png') }}">
+                        <img src="{{ asset('build/images/logo.png') }}" alt="logo">
                         <hr class="login-hr">
                         <p class="subtitle has-text-black">Inscrivez-vous pour accéder à la médiathèque.</p>
 
                         <div class="box">
                             <div class="title has-text-grey is-6">Saisissez votre nom, votre adresse email et votre mot de passe.</div>
-                            <form>
+                            {{ form_start(form) }}
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input is-medium" type="text" placeholder="John Doe" autofocus="">
+                                        {{ form_widget(form.name, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true', 'placeholder' : 'John Doe'}}) }}
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input is-medium" type="email" placeholder="john.doe@gmail.com" autofocus="">
+                                        {{ form_widget(form.email, {'attr' : {'class' : 'input is-medium', 'placeholder':'john.doe@gmail.com'}}) }}
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input is-medium" type="password" placeholder="********">
+                                        {{ form_widget(form.plainPassword, {'attr': {'class': 'input is-medium', 'placeholder': '**********'}}) }}
                                     </div>
                                 </div>
-                                <button class="button is-block is-black is-medium is-fullwidth">Inscription</button>
-                            </form>
+
+                                <button type="submit" class="button is-block is-black is-medium is-fullwidth">Inscription</button>
+                                {% if form_errors(form.name) or form_errors(form.email) or form_errors(form.plainPassword) %}
+                                    <div class="notification is-danger is-light p-2 mb-0 mt-3 is-small ml-auto mr-auto">
+                                        <ul>
+                                            {% if form_errors(form.name) %}
+                                                <li>{{ form_errors(form.name) }}</li>
+                                            {% endif %}
+                                            {% if form_errors(form.email) %}
+                                                <li>{{ form_errors(form.email) }}</li>
+                                            {% endif %}
+                                            {% if form_errors(form.plainPassword) %}
+                                                <li>{{ form_errors(form.plainPassword) }}</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
                         </div>
                         <a href="/login" class="has-text-black">Connexion</a>
                     </div>

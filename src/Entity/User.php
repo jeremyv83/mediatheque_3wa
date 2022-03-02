@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping\JoinTable;
@@ -18,6 +19,7 @@ use Doctrine\ORM\Mapping\DiscriminatorMap;
  * @InheritanceType("SINGLE_TABLE")
  * @DiscriminatorColumn(name="type", type="string")
  * @DiscriminatorMap({"member" = "Member", "librarian" = "Librarian", "visitor" = "Visitor"})
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -164,7 +166,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * Returning a salt is only needed, if you are not using a modern
-     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.en.yaml.
      *
      * @see UserInterface
      */
