@@ -3,9 +3,6 @@
 {% block title %}Se connecter | MediaTehk {% endblock %}
 
 {% block body %}
-    {% if error %}
-        <div class="notification is-danger m-0">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
     <div class="hero is-fullheight has-background-primary-light">
         <div class="hero-body">
             <div class="container has-text-centered">
@@ -22,7 +19,8 @@
                                 <div class="field">
                                     <div class="control">
                                         <label>
-                                            <input class="input is-medium" type="email" name="_username" placeholder="john.doe@gmail.com"
+                                            <input class="input is-medium" type="email" name="_username"
+                                                   placeholder="john.doe@gmail.com"
                                                    autofocus="" value="{{ last_username }}">
                                         </label>
                                     </div>
@@ -30,11 +28,15 @@
                                 <div class="field">
                                     <div class="control">
                                         <label>
-                                            <input class="input is-medium" type="password" placeholder="********" name="_password">
+                                            <input class="input is-medium" type="password" placeholder="********"
+                                                   name="_password">
                                         </label>
                                     </div>
                                 </div>
                                 <button class="button is-block is-black is-medium is-fullwidth">Connexion</button>
+                                {% if error %}
+                                    <div class="notification is-danger is-light p-2 mb-0 mt-3 is-small ml-auto mr-auto">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
                             </form>
                         </div>
                         <a href="{{ path('register') }}" class="has-text-black">Inscription</a> &nbsp;·&nbsp;

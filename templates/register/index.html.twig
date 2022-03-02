@@ -32,7 +32,21 @@
                                 </div>
 
                                 <button type="submit" class="button is-block is-black is-medium is-fullwidth">Inscription</button>
-                            {{ form_end(form) }}
+                                {% if form_errors(form.name) or form_errors(form.email) or form_errors(form.plainPassword) %}
+                                    <div class="notification is-danger is-light p-2 mb-0 mt-3 is-small ml-auto mr-auto">
+                                        <ul>
+                                            {% if form_errors(form.name) %}
+                                                <li>{{ form_errors(form.name) }}</li>
+                                            {% endif %}
+                                            {% if form_errors(form.email) %}
+                                                <li>{{ form_errors(form.email) }}</li>
+                                            {% endif %}
+                                            {% if form_errors(form.plainPassword) %}
+                                                <li>{{ form_errors(form.plainPassword) }}</li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
                         </div>
                         <a href="/login" class="has-text-black">Connexion</a>
                     </div>
