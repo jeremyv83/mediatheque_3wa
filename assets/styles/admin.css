@@ -1,0 +1,60 @@
+/**
+  * GLOBAL
+-*/
+
+a {
+    color: #CC0F35;
+}
+
+/**
+  * NAVBAR
+-*/
+
+.navbar {
+    background-color: #CC0F35;
+}
+
+.navbar-item .icon {
+    color: white;
+}
+
+.navbar-item .icon:hover {
+    color: #4a4a4a;
+}
+
+.menu-label {
+    font-weight: 800;
+}
+
+.menu-list a:hover {
+   color: #CC0F35;
+}
+.menu-list a.is-active {
+    background-color: #CC0F35;
+}
+
+.section {
+    padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .section {
+        padding-top: 2em;
+        padding-left: 2em;
+    }
+}
+
+.container {
+    padding-top: 2em;
+}
+
+/**
+  * PAGINATION
+-*/
+
+.pagination-link.is-current {
+    background-color: #CC0F35;
+    border-color: #8e0a25;
+    color: white;
+}
+
