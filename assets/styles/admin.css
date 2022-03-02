@@ -3,7 +3,7 @@
 -*/
 
 a {
-    color: #CC0F35;
+    color: #00D1B2;
 }
 
 /**
@@ -11,7 +11,7 @@ a {
 -*/
 
 .navbar {
-    background-color: #CC0F35;
+    background-color: #00D1B2;
 }
 
 .navbar-item .icon {
@@ -27,10 +27,10 @@ a {
 }
 
 .menu-list a:hover {
-   color: #CC0F35;
+   color: #00D1B2;
 }
 .menu-list a.is-active {
-    background-color: #CC0F35;
+    background-color: #00D1B2;
 }
 
 .section {
@@ -53,8 +53,8 @@ a {
 -*/
 
 .pagination-link.is-current {
-    background-color: #CC0F35;
-    border-color: #8e0a25;
+    background-color: #00D1B2;
+    border-color: #00927c;
     color: white;
 }
 
