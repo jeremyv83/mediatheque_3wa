@@ -15,10 +15,9 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <div id="header">
-            {% include('navbar.html.twig') %}
-        </div>
+    <body class="has-navbar-fixed-top">
+        {% include('navbar.html.twig') %}
         {% block body %}{% endblock %}
+        {% include('footer.html.twig') %}
     </body>
 </html>
