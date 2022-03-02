@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row columns">
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Documents </h1>
+            {% for document in documents %}
+                <div class="box">
+                    <p>Auteur : </p>
+                    <p>Nom : </p>
+                    {% if document.physique %}
+                        <p>Physique : Oui</p>
+                        <p>Quantité : {{ document.quantity }}</p>
+                    {% else %}
+                        <p>Physique : Non</p>
+                    {% endif %}
+                    <p>Fragile : {{ document.fragile ? 'Oui':'Non' }}</p>
+                    <p>Description :{{ document.description }}</p>
+                    <p>Date : {{ document.date|format_datetime(pattern='Y',locale='fr') }}</p>
+                    <p>Type : </p>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Membres </h1>
+            {% for member in members %}
+                <div class="box">
+                    <p>Nom : {{ member.name }}</p>
+                    <p>Email : {{ member.email }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Libraires </h1>
+            {% for librarian in librarians %}
+                <div class="box">
+                    <p>{{ librarian.name }}</p>
+                    <p>{{ librarian.email }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row columns">
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Emprunts </h1>
+            {% for emprunt in emprunts %}
+                <div class="box">
+                    <p>Membre : {{ emprunt.user.name }}</p>
+                    <p>Document : {{ emprunt.documents.name }}</p>
+                    <p>Date d'emprunt : {{ emprunt.dateEmprunt|format_date(locale='fr') }}</p>
+                    {% if emprunt.dateRemise %}
+                        <p>Date de retour : {{ emprunt.dateRemise|format_date(locale='fr') }}</p>
+                        <p>Etat : {{ emprunt.etatRemise }}</p>
+                    {% endif %}
+                    <p></p>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Logs </h1>
+            {% for log in logs %}
+                <div class="box">
+                    <p>Document : {{ log.documents.name }}</p>
+                    <p>Utilisateur : {{ log.user.name }}</p>
+                    <p>Action : {{ log.actions }}</p>
+                    <p>Date : {{ log.date|format_date(locale='fr') }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div style="max-height: 100vh; overflow: scroll" class="column is-one-third">
+            <h1 class="title"> Rencontres </h1>
+            {% for rencontre in rencontres %}
+                <div class="box">
+                    <p>Nom : {{ rencontre.title }}</p>
+                    <p>Date : {{ rencontre.date|format_date(locale='fr') }}</p>
+                    <p>Auteurs : </p>
+                    {% for auteur in rencontre.auteurs %}
+                        <p>{{ auteur.name }}</p>
+                    {% endfor %}
+                    {% if rencontre.linkedDocuments is not empty %}
+                        <p> Livres : </p>
+                        {% for livre in rencontre.linkedDocuments %}
+                            <p>{{ livre.name }}</p>
+                        {% endfor %}
+                    {% endif %}
+                    <p>Participants</p>
+                    {% for participant in rencontre.participants %}
+                        <p>{{ participant.name }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% endblock %}
+</div>

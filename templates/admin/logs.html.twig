@@ -1,11 +1,11 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Documents | Administration MediaTehk{% endblock %}
+{% block title %}Historique | Administration MediaTehk{% endblock %}
 
 {% block body %}
     <nav class="panel">
         <p class="panel-heading">
-            Documents
+            Historique
         </p>
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -15,48 +15,30 @@
                                     </span>
             </p>
         </div>
-        <p class="panel-tabs">
-            <a class="is-active">Tous</a>
-            <a>Livres</a>
-            <a>CD</a>
-            <a>DVD</a>
-            <a>Revues</a>
-        </p>
         <table class="table is-fullwidth">
             <thead>
             <tr>
-                <th><abbr title="Nom">Nom</abbr></th>
-                <th><abbr title="Auteur(s)">Auteur(s)</abbr></th>
-                <th><abbr title="Type de document">Type de document</abbr></th>
-                <th><abbr title="Quantité">Quantité</abbr></th>
-                <th><abbr title="Physique">Physique</abbr></th>
-                <th><abbr title="Fragile">Fragile</abbr></th>
+                <th><abbr title="Membre">Membre</abbr></th>
+                <th><abbr title="Action">Action</abbr></th>
+                <th><abbr title="Document">Document</abbr></th>
                 <th><abbr title="Date">Date</abbr></th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <th><abbr title="Nom">Nom</abbr></th>
-                <th><abbr title="Auteur(s)">Auteur(s)</abbr></th>
-                <th><abbr title="Type de document">Type de document</abbr></th>
-                <th><abbr title="Quantité">Quantité</abbr></th>
-                <th><abbr title="Physique">Physique</abbr></th>
-                <th><abbr title="Fragile">Fragile</abbr></th>
+                <th><abbr title="Membre">Membre</abbr></th>
+                <th><abbr title="Action">Action</abbr></th>
+                <th><abbr title="Document">Document</abbr></th>
                 <th><abbr title="Date">Date</abbr></th>
             </tr>
             </tfoot>
             <tbody>
-            {% for document in documents %}
+            {% for log in logs %}
                 <tr>
-                    <th>{{ document.name }}</th>
-                    <td>
-                        <a href="https://fr.wikipedia.org/wiki/{{ document.auteur.name }}" title="{{ document.auteur.name }}">{{ document.auteur.name }}</a>
-                    </td>
-                    <td>{{ document.className }}</td>
-                    <td>{{ document.quantity }}</td>
-                    <td>{{ document.physique ? 'Oui':'Non' }}</td>
-                    <td>{{ document.fragile ? 'Oui':'Non' }}</td>
-                    <td>{{ document.date|format_datetime(pattern='Y',locale='fr') }}</td>
+                    <th>{{ log.user.name }}</th>
+                    <th>{{ log.actions }}</th>
+                    <th>{{ log.documents.name }}</th>
+                    <th>{{ log.date|format_date(locale='fr') }}</th>
                 </tr>
             {% endfor %}
             </tbody>

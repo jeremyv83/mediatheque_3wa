@@ -4,12 +4,19 @@ namespace App\Entity;
 
 use App\Repository\EmpruntRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+const ETATS = [
+    0 => "Parfait",
+    1 => "Bon",
+    2 => "Moyen",
+    3 => "Mauvais",
+    4 => "Perdu",
+];
 /**
  * @ORM\Entity(repositoryClass=EmpruntRepository::class)
  */
 class Emprunt
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -28,7 +35,7 @@ class Emprunt
     private $date_remise;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $etat_remise;
 
@@ -72,9 +79,9 @@ class Emprunt
         return $this;
     }
 
-    public function getEtatRemise(): ?bool
+    public function getEtatRemise(): ?string
     {
-        return $this->etat_remise;
+        return ETATS[$this->etat_remise];
     }
 
     public function setEtatRemise(?bool $etat_remise): self

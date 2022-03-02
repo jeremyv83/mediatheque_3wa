@@ -120,7 +120,8 @@ class AppFixtures extends Fixture
             $emprunt->setDateEmprunt($faker->dateTime);
             if ($faker->boolean) {
                 $emprunt->setDateRemise($faker->dateTime);
-                $emprunt->setEtatRemise($faker->numberBetween(0, 4));
+                $rand = rand(0, 5);
+                $emprunt->setEtatRemise($rand);
             }
             $manager->persist($emprunt);
             $this->addReference('emprunt_' . $i, $emprunt);
