@@ -1,10 +1,11 @@
 {{ form_start(form) }}
-    Name : {{ form_widget(form.name) }}
-    Quantity : {{ form_widget(form.quantity) }}
-    Physique : {{ form_widget(form.physique) }}
-    Fragile : {{ form_widget(form.fragile) }}
-    Description : {{ form_widget(form.description) }}
-    Date : {{ form_widget(form.date) }}
-    Author : {{ form_widget(form.auteur) }}
-    {{ form_widget(form.submit) }}
+Name : {{ form_widget(form.name) }}
+Quantity : {{ form_widget(form.quantity) }}
+Physique : {{ form_widget(form.physique) }}
+Fragile : {{ form_widget(form.fragile) }}
+Description : {{ form_widget(form.description) }}
+Date : {{ form_widget(form.date) }}
+Author : {{ form_widget(form.auteur) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+
 {{ form_end(form) }}

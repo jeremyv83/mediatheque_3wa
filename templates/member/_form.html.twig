@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+email :{{ form_widget(form.email) }}
+password: {{ form_widget(form.password) }}
+nom{{ form_widget(form.name) }}
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

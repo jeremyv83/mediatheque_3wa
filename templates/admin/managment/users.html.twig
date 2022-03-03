@@ -6,7 +6,7 @@
     <nav class="panel">
         <div class="panel-heading">
             <p class="panel-heading">Gestion des membres</p>
-            <button class="button mt-4 has-background-success has-text-white">Ajouter un membre</button>
+            <a href="{{ path('app_member_new') }}" class="button mt-4 has-background-success has-text-white">Ajouter un membre</a>
         </div>
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -33,7 +33,10 @@
             {% for member in members %}
                 <tr>
                     <th>{{ member.name }}</th>
-                    <td><button class="button is-warning"><i class="fa-solid fa-pen"></i></button> </td>
+                    <td>
+                        <a href="{{ path('app_member_show', {'id': member.id}) }}">show</a>
+                        <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
