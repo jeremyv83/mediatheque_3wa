@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Document;
+use App\Entity\Librarian;
 use App\Entity\Logs;
+use App\Entity\Member;
 use App\Entity\Rencontre;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -60,6 +62,52 @@ class AdminController extends AbstractController
 
         return $this->render("admin/logs.html.twig", [
             'logs' => $logs
+        ]);
+    }
+
+
+    /**
+     * @Route("/admin/manage/documents", name="admin_manage_documents")
+     */
+    public function manageDocuments(EntityManagerInterface $entity_manager): Response
+    {
+        $documents = $entity_manager
+            ->getRepository(Document::class)
+            ->findAll();
+
+        return $this->render('admin/managment/documents.html.twig', [
+            'controller_name' => 'AdminController',
+            'documents' => $documents
+        ]);
+    }
+
+    /**
+     * @Route("/admin/manage/users", name="admin_manage_users")
+     */
+    public function manageUsers(EntityManagerInterface $entity_manager): Response
+    {
+        $members = $entity_manager
+            ->getRepository(Member::class)
+            ->findAll();
+
+        return $this->render('admin/managment/users.html.twig', [
+            'controller_name' => 'AdminController',
+            'members' => $members
+        ]);
+    }
+
+    /**
+     * @Route("/admin/manage/employees", name="admin_manage_employees")
+     */
+    public function manageEmployees(EntityManagerInterface $entity_manager): Response
+    {
+        $librarians = $entity_manager
+            ->getRepository(Librarian::class)
+            ->findAll();
+
+        return $this->render('admin/managment/employees.html.twig', [
+            'controller_name' => 'AdminController',
+            'librarians' => $librarians
         ]);
     }
 }

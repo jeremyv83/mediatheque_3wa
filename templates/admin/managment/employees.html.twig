@@ -1,15 +1,16 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Rencontres | Administration MediaTehk{% endblock %}
+{% block title %}Gestion des utilisateurs | Administration MediaTehk{% endblock %}
 
 {% block body %}
     <nav class="panel">
-        <p class="panel-heading">
-            Rencontres
-        </p>
+        <div class="panel-heading">
+            <p class="panel-heading">Gestion des employés</p>
+            <button class="button mt-4 has-background-success has-text-white">Ajouter un employé</button>
+        </div>
         <div class="panel-block">
             <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Rechercher un document">
+                <input class="input" type="text" placeholder="Rechercher un employé">
                 <span class="icon is-left">
                                         <i class="fas fa-search" aria-hidden="true"></i>
                                     </span>
@@ -19,27 +20,20 @@
             <thead>
             <tr>
                 <th><abbr title="Nom">Nom</abbr></th>
-                <th><abbr title="Date">Date</abbr></th>
-                <th><abbr title="Auteur">Auteur</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
             </tr>
             </thead>
             <tfoot>
             <tr>
                 <th><abbr title="Nom">Nom</abbr></th>
-                <th><abbr title="Date">Date</abbr></th>
-                <th><abbr title="Auteur">Auteur</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
             </tr>
             </tfoot>
             <tbody>
-            {% for rencontre in rencontres %}
+            {% for librarian in librarians %}
                 <tr>
-                    <th>{{ rencontre.title }}</th>
-                    <td>{{ rencontre.date|format_date(locale='fr') }}</td>
-                    {% for auteur in rencontre.auteurs %}
-                        <td>
-                            <a href="https://fr.wikipedia.org/wiki/{{ auteur.name }}" title="{{ auteur.name }}">{{ auteur.name }}</a>
-                        </td>
-                    {% endfor %}
+                    <th>{{ librarian.name }}</th>
+                    <td><button class="button is-warning"><i class="fa-solid fa-pen"></i></button> </td>
                 </tr>
             {% endfor %}
             </tbody>

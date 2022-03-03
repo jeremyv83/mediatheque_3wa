@@ -1,12 +1,13 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Rencontres | Administration MediaTehk{% endblock %}
+{% block title %}Gestion des documents | Administration MediaTehk{% endblock %}
 
 {% block body %}
     <nav class="panel">
-        <p class="panel-heading">
-            Rencontres
-        </p>
+        <div class="panel-heading">
+            <p class="panel-heading">Gestion des documents</p>
+            <button class="button mt-4 has-background-success has-text-white">Ajouter un document</button>
+        </div>
         <div class="panel-block">
             <p class="control has-icons-left">
                 <input class="input" type="text" placeholder="Rechercher un document">
@@ -15,31 +16,42 @@
                                     </span>
             </p>
         </div>
+        <p class="panel-tabs">
+            <a class="is-active">Tous</a>
+            <a>Livres</a>
+            <a>CD</a>
+            <a>DVD</a>
+            <a>Revues</a>
+        </p>
         <table class="table is-fullwidth">
             <thead>
             <tr>
                 <th><abbr title="Nom">Nom</abbr></th>
+                <th><abbr title="Auteur(s)">Auteur(s)</abbr></th>
+                <th><abbr title="Type de document">Type de document</abbr></th>
                 <th><abbr title="Date">Date</abbr></th>
-                <th><abbr title="Auteur">Auteur</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
             </tr>
             </thead>
             <tfoot>
             <tr>
                 <th><abbr title="Nom">Nom</abbr></th>
+                <th><abbr title="Auteur(s)">Auteur(s)</abbr></th>
+                <th><abbr title="Type de document">Type de document</abbr></th>
                 <th><abbr title="Date">Date</abbr></th>
-                <th><abbr title="Auteur">Auteur</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
             </tr>
             </tfoot>
             <tbody>
-            {% for rencontre in rencontres %}
+            {% for document in documents %}
                 <tr>
-                    <th>{{ rencontre.title }}</th>
-                    <td>{{ rencontre.date|format_date(locale='fr') }}</td>
-                    {% for auteur in rencontre.auteurs %}
-                        <td>
-                            <a href="https://fr.wikipedia.org/wiki/{{ auteur.name }}" title="{{ auteur.name }}">{{ auteur.name }}</a>
-                        </td>
-                    {% endfor %}
+                    <th>{{ document.name }}</th>
+                    <td>
+                        <a href="https://fr.wikipedia.org/wiki/{{ document.auteur.name }}" title="{{ document.auteur.name }}">{{ document.auteur.name }}</a>
+                    </td>
+                    <td>{{ document.className }}</td>
+                    <td>{{ document.date|format_datetime(pattern='Y',locale='fr') }}</td>
+                    <td><button class="button is-warning"><i class="fa-solid fa-pen"></i></button> </td>
                 </tr>
             {% endfor %}
             </tbody>
