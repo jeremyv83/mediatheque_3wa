@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Document;
-use App\Form\Document1Type;
+use App\Form\DocumentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/document")
+ * @Route("admin/document")
  */
 class DocumentController extends AbstractController
 {
@@ -24,7 +24,7 @@ class DocumentController extends AbstractController
             ->getRepository(Document::class)
             ->findAll();
 
-        return $this->render('document/index.html.twig', [
+        return $this->render('admin/managment/documents.html.twig', [
             'documents' => $documents,
         ]);
     }
@@ -35,7 +35,7 @@ class DocumentController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $document = new Document();
-        $form = $this->createForm(Document1Type::class, $document);
+        $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,7 +66,7 @@ class DocumentController extends AbstractController
      */
     public function edit(Request $request, Document $document, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(Document1Type::class, $document);
+        $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
