@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
                 $rencontre->addParticipant($this->getReference('user_' . $faker->numberBetween(0, 29)));
             }
             $rencontre->addParticipant($this->getReference('user_' . $faker->numberBetween(0, 29)));
-            $rencontre->addAuteur($this->getReference('auteur_' . $faker->numberBetween(0, 9)));
+            $rencontre->setAuteur($this->getReference('auteur_' . $faker->numberBetween(0, 9)));
             $manager->persist($rencontre);
             $this->addReference('rencontre_' . $i, $rencontre);
         }
