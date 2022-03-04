@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Book;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,7 +35,7 @@ class DocumentController extends AbstractController
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $document = new Document();
+        $document = new Book();
         $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
 
