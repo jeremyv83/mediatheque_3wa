@@ -35,11 +35,9 @@
                 <tr>
                     <th>{{ rencontre.title }}</th>
                     <td>{{ rencontre.date|format_date(locale='fr') }}</td>
-                    {% for auteur in rencontre.auteurs %}
-                        <td>
-                            <a href="https://fr.wikipedia.org/wiki/{{ auteur.name }}" title="{{ auteur.name }}">{{ auteur.name }}</a>
-                        </td>
-                    {% endfor %}
+                    <td>
+                        <a href="https://fr.wikipedia.org/wiki/{{ rencontre.auteur.name }}" title="{{ rencontre.auteur.name }}">{{ rencontre.auteur.name }}</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
