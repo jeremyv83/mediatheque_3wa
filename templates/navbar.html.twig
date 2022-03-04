@@ -23,6 +23,7 @@
                 Documents
             </a>
 
+            {% if is_granted("ROLE_MEMBER") %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     Services
@@ -44,6 +45,7 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
         </div>
 
         <div class="navbar-end">
