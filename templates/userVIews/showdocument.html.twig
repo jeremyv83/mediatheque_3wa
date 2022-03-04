@@ -35,7 +35,9 @@
                                     <th><abbr title="Type de document">Type de document</abbr></th>
                                     <th><abbr title="Quantité">Quantité</abbr></th>
                                     <th><abbr title="Date">Date</abbr></th>
-                                    <th><abbr title="Action">Actions</abbr></th>
+                                    {% if is_granted("ROLE_MEMBER") %}
+                                        <th><abbr title="Action">Actions</abbr></th>
+                                    {% endif %}
                                 </tr>
                                 </thead>
                                 <tfoot>
@@ -45,7 +47,9 @@
                                     <th><abbr title="Type de document">Type de document</abbr></th>
                                     <th><abbr title="Quantité">Quantité</abbr></th>
                                     <th><abbr title="Date">Date</abbr></th>
-                                    <th><abbr title="Action">Actions</abbr></th>
+                                    {% if is_granted("ROLE_MEMBER") %}
+                                        <th><abbr title="Action">Actions</abbr></th>
+                                    {% endif %}
                                 </tr>
                                 </tfoot>
                                 <tbody>
@@ -58,7 +62,8 @@
                                         <td>{{ document.date|format_datetime(pattern='Y',locale='fr') }}</td>
                                         <td>
                                             {% if is_granted('ROLE_MEMBER') %}
-                                                <form method="post" action="{{ path('app_document_reserve',{'id':document.id}) }}">
+                                                <form method="post"
+                                                      action="{{ path('app_document_reserve',{'id':document.id}) }}">
                                                     <input type="hidden" name="id" value="{{ document.id }}">
                                                     <input type="submit" value="Reserver">
                                                 </form>
@@ -86,7 +91,8 @@
                                     <a class="pagination-link" aria-label="Goto page 45">45</a>
                                 </li>
                                 <li>
-                                    <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+                                    <a class="pagination-link is-current" aria-label="Page 46"
+                                       aria-current="page">46</a>
                                 </li>
                                 <li>
                                     <a class="pagination-link" aria-label="Goto page 47">47</a>

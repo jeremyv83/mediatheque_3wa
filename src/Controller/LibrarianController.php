@@ -8,6 +8,8 @@ use App\Repository\LibrarianRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -28,13 +30,17 @@ class LibrarianController extends AbstractController
     /**
      * @Route("/new", name="app_librarian_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, LibrarianRepository $librarianRepository): Response
+    public function new(Request $request, LibrarianRepository $librarianRepository, UserPasswordHasherInterface $hasher): Response
     {
         $librarian = new Librarian();
         $form = $this->createForm(LibrarianType::class, $librarian);
         $form->handleRequest($request);
+        $librarian->setRoles(['ROLE_LIBRARIAN']);;
+
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $password = $librarian->getPassword();
+            $librarian->setPassword($hasher->hashPassword($librarian, $password));
             $librarianRepository->add($librarian);
             return $this->redirectToRoute('app_librarian_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -79,7 +85,7 @@ class LibrarianController extends AbstractController
      */
     public function delete(Request $request, Librarian $librarian, LibrarianRepository $librarianRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$librarian->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $librarian->getId(), $request->request->get('_token'))) {
             $librarianRepository->remove($librarian);
         }
 
