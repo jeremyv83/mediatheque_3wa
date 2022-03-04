@@ -1,0 +1,89 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Historique | Administration MediaTehk{% endblock %}
+
+{% block body %}
+    <nav class="panel">
+        <p class="panel-heading">
+            Historique
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Rechercher un document">
+                <span class="icon is-left">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </span>
+            </p>
+        </div>
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th><abbr title="Membre">Membre</abbr></th>
+                <th><abbr title="Action">Action</abbr></th>
+                <th><abbr title="Document">Document</abbr></th>
+                <th><abbr title="Date">Date</abbr></th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th><abbr title="Membre">Membre</abbr></th>
+                <th><abbr title="Action">Action</abbr></th>
+                <th><abbr title="Document">Document</abbr></th>
+                <th><abbr title="Date">Date</abbr></th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for log in logs %}
+                <tr>
+                    <th>{{ log.user.name }}</th>
+                    <th>{{ log.actions }}</th>
+                    <th>{{ log.documents.name }}</th>
+                    <th>{{ log.date|format_date(locale='fr') }}</th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </nav>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Précédent</a>
+        <a class="pagination-next">Page suivante</a>
+        <ul class="pagination-list">
+            <li>
+                <a class="pagination-link" aria-label="Goto page 1">1</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 45">45</a>
+            </li>
+            <li>
+                <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 47">47</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 86">86</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="modal-document-description" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Les Misérables de Victor Hugo</p>
+            </header>
+            <section class="modal-card-body">
+                <p>Jean Valjean a été condamné au bagne en 1795 pour le vol d'un pain, jugement qui symbolise
+                    l'oppression qu'impose une société injuste à une population écrasée ; L'Inspecteur Javert, policier,
+                    incarne l'intransigeance de la société bourgeoise. Pas de rémission pour un ancien forçat, pas de
+                    grâce pour Valjean.</p>
+            </section>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+{% endblock %}

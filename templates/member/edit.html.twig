@@ -1,0 +1,13 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier un utilisateur | Administration MediaTehk{% endblock %}
+
+{% block body %}
+<nav class="panel">
+    <p class="panel-heading">Modifier un utilisateur</p>
+
+    {{ include('member/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+    {{ include('member/_delete_form.html.twig') }}
+</nav>
+{% endblock %}

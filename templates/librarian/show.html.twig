@@ -1,0 +1,29 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Consulter un employé | Administration MediaTehk{% endblock %}
+
+{% block body %}
+
+    <nav class="panel">
+        <p class="panel-heading">Profil de l'utilisateur</p>
+
+        <table class="table is-fullwidth">
+            <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ librarian.name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ librarian.email }}</td>
+            </tr>
+            <tr>
+                <th>Mot de passe </th>
+                <td>{{ librarian.password }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </nav>
+
+    {{ include('librarian/_delete_form.html.twig') }}
+{% endblock %}

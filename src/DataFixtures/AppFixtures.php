@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
                 $rencontre->addParticipant($this->getReference('user_' . $faker->numberBetween(0, 29)));
             }
             $rencontre->addParticipant($this->getReference('user_' . $faker->numberBetween(0, 29)));
-            $rencontre->addAuteur($this->getReference('auteur_' . $faker->numberBetween(0, 9)));
+            $rencontre->setAuteur($this->getReference('auteur_' . $faker->numberBetween(0, 9)));
             $manager->persist($rencontre);
             $this->addReference('rencontre_' . $i, $rencontre);
         }
@@ -120,7 +120,8 @@ class AppFixtures extends Fixture
             $emprunt->setDateEmprunt($faker->dateTime);
             if ($faker->boolean) {
                 $emprunt->setDateRemise($faker->dateTime);
-                $emprunt->setEtatRemise($faker->numberBetween(0, 4));
+                $rand = rand(0, 5);
+                $emprunt->setEtatRemise($rand);
             }
             $manager->persist($emprunt);
             $this->addReference('emprunt_' . $i, $emprunt);

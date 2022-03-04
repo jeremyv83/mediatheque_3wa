@@ -1,63 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="#">
-      <img src="{{ asset('build/images/logo.png') }}" width="112" height="28">
-    </a>
-
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbar" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" href="/home">
-        Accueil
-      </a>
-
-      <a class="navbar-item" href="/documents">
-        Documents
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Services
+    <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+            <img src="{{ asset('build/images/logo.png') }}" width="112" height="28">
         </a>
 
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            Emprunt
-          </a>
-          <a class="navbar-item">
-            Réservation
-          </a>
-          <a class="navbar-item">
-            Proposition d'achat
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Formulaire de cession
-          </a>
-        </div>
-      </div>
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary" href="/register">
-            <strong>S'inscrire</strong>
-          </a>
-          <a class="button is-light" href="/login">
-            Se connecter
-          </a>
+    <div id="navbar" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">
+                Accueil
+            </a>
+
+            <a class="navbar-item" href="{{ path('app_document_show_member') }}">
+                Documents
+            </a>
+
+            <a class="navbar-item" href="{{ path('app_rencontre') }}">
+                Rencontres
+            </a>
+
+            {% if is_granted("ROLE_MEMBER") %}
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    Services
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a href="" class="navbar-item">
+                        Emprunt
+                    </a>
+                    <a href="{{ path('app_document_reserved') }}" class="navbar-item">
+                        Réservations
+                    </a>
+                    <a class="navbar-item">
+                        Proposition d'achat
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Formulaire de cession
+                    </a>
+                    <a href="{{ path('app_rencontre_particiations') }}" class="navbar-item">
+                        Mes rencontres
+                    </a>
+                </div>
+            </div>
+            {% endif %}
         </div>
-      </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if is_granted("IS_AUTHENTICATED") %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link">
+                                {{ app.user.name }}
+                            </a>
+
+                            <div class="navbar-dropdown">
+                                <a href="" class="navbar-item">
+                                    Mon profil
+                                </a>
+                                {% if is_granted("ROLE_LIBRARIAN") %}
+                                    <a href="{{ path('admin_home') }}" class="navbar-item">
+                                        Gestion
+                                    </a>
+                                {% endif %}
+                                <a href="{{ path('app_logout') }}" class="navbar-item">
+                                    Déconnexion
+                                </a>
+                            </div>
+                    {% else %}
+                        <a class="button is-primary" href="{{ path('register') }}">
+                            <strong>S'inscrire</strong>
+                        </a>
+                        <a class="button is-light" href="{{ path('app_login') }}">
+                            Se connecter
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </nav>
 </html>

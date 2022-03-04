@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier un employé | Administration MediaTehk{% endblock %}
+
+{% block body %}
+
+    <nav class="panel">
+        <p class="panel-heading">Modifier un employé</p>
+
+        {{ include('librarian/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+        {{ include('librarian/_delete_form.html.twig') }}
+    </nav>
+{% endblock %}

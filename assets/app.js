@@ -7,7 +7,11 @@
 
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
-import '../node_modules/bulma/css/bulma.css'
+import '../node_modules/bulma/bulma.sass'
+
+// FontAwesome
+import '../node_modules/@fortawesome/fontawesome-free/css/all.min.css'
+import '../node_modules/@fortawesome/fontawesome-free/js/all.min'
 
 import './scripts/modal'
 

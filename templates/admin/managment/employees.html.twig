@@ -1,0 +1,87 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs | Administration MediaTehk{% endblock %}
+
+{% block body %}
+    <nav class="panel">
+        <div class="panel-heading">
+            <p class="panel-heading">Gestion des employés</p>
+            <a href="{{ path('app_librarian_new') }}" class="button mt-4 has-background-success has-text-white">Ajouter un employé</a>
+        </div>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Rechercher un employé">
+                <span class="icon is-left">
+                                        <i class="fas fa-search" aria-hidden="true"></i>
+                                    </span>
+            </p>
+        </div>
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th><abbr title="Nom">Nom</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <th><abbr title="Nom">Nom</abbr></th>
+                <th><abbr title="Gestion">Gestion</abbr></th>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for librarian in librarians %}
+                <tr>
+                    <th>{{ librarian.name }}</th>
+                    <td>
+                        <a href="{{ path('app_librarian_show', {'id': librarian.id}) }}"><button class="button is-info has-text-white" ><i class="fa-solid fa-eye"></i></button></a>
+                        <a href="{{ path('app_librarian_edit', {'id': librarian.id}) }}"><button class="button is-warning has-text-white"><i class="fa-solid fa-pen"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </nav>
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Précédent</a>
+        <a class="pagination-next">Page suivante</a>
+        <ul class="pagination-list">
+            <li>
+                <a class="pagination-link" aria-label="Goto page 1">1</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 45">45</a>
+            </li>
+            <li>
+                <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 47">47</a>
+            </li>
+            <li>
+                <span class="pagination-ellipsis">&hellip;</span>
+            </li>
+            <li>
+                <a class="pagination-link" aria-label="Goto page 86">86</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="modal-document-description" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Les Misérables de Victor Hugo</p>
+            </header>
+            <section class="modal-card-body">
+                <p>Jean Valjean a été condamné au bagne en 1795 pour le vol d'un pain, jugement qui symbolise
+                    l'oppression qu'impose une société injuste à une population écrasée ; L'Inspecteur Javert, policier,
+                    incarne l'intransigeance de la société bourgeoise. Pas de rémission pour un ancien forçat, pas de
+                    grâce pour Valjean.</p>
+            </section>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+{% endblock %}

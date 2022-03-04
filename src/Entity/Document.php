@@ -380,5 +380,10 @@ class Document
         return $this;
     }
 
+    public function getClassName(): ?string
+    {
+        return(new \ReflectionClass($this))->getShortName();
+    }
+
 
 }

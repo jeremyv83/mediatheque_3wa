@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if participations is empty %}
+        <h1>Vous n'avez aucun document reservé</h1>
+    {% else %}
+        {% for participation in participations %}
+            {{ participation.title }}
+            {{ participation.auteur.name }}
+            {{ participation.date|format_datetime(locale="fr") }}
+            <form action="{{ path('app_rencontre_unparticipe', {'id': participation.id}) }}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+

@@ -20,11 +20,6 @@ class Rencontre
     private $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Auteur::class, mappedBy="participe_a")
-     */
-    private $auteurs;
-
-    /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="rencontres")
      */
     private $participants;
@@ -44,9 +39,14 @@ class Rencontre
      */
     private $title;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Auteur::class, inversedBy="rencontres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Auteur;
+
     public function __construct()
     {
-        $this->auteurs = new ArrayCollection();
         $this->participants = new ArrayCollection();
         $this->linked_documents = new ArrayCollection();
     }
@@ -54,33 +54,6 @@ class Rencontre
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Auteur>
-     */
-    public function getAuteurs(): Collection
-    {
-        return $this->auteurs;
-    }
-
-    public function addAuteur(Auteur $auteur): self
-    {
-        if (!$this->auteurs->contains($auteur)) {
-            $this->auteurs[] = $auteur;
-            $auteur->addParticipeA($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAuteur(Auteur $auteur): self
-    {
-        if ($this->auteurs->removeElement($auteur)) {
-            $auteur->removeParticipeA($this);
-        }
-
-        return $this;
     }
 
     /**
@@ -151,6 +124,18 @@ class Rencontre
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?Auteur
+    {
+        return $this->Auteur;
+    }
+
+    public function setAuteur(?Auteur $Auteur): self
+    {
+        $this->Auteur = $Auteur;
 
         return $this;
     }

@@ -1,0 +1,83 @@
+/**
+  * GLOBAL
+-*/
+
+a {
+    color: #00D1B2;
+}
+
+/**
+  * NAVBAR
+-*/
+
+.navbar {
+    background-color: #00D1B2;
+}
+
+.navbar-item .icon {
+    color: white;
+}
+
+.navbar-item .icon:hover {
+    color: #4a4a4a;
+}
+
+.menu-label {
+    font-weight: 800;
+}
+
+.menu-list a:hover {
+   color: #00D1B2;
+}
+.menu-list a.is-active {
+    background-color: #00D1B2;
+}
+
+.section {
+    padding: 0;
+}
+
+@media screen and (min-width: 1024px) {
+    .section {
+        padding-top: 2em;
+        padding-left: 2em;
+    }
+}
+
+.container {
+    padding-top: 2em;
+}
+
+/**
+  * PAGINATION
+-*/
+
+.pagination-link.is-current {
+    background-color: #00D1B2;
+    border-color: #00927c;
+    color: white;
+}
+
+/**
+  * MANAGE DOCUMENTS
+ */
+
+.panel-heading {
+    background-color: #f9f9f9;
+    border-radius: 6px 6px 0 0;
+    color: #363636;
+    font-size: 1.25em;
+    font-weight: 700;
+    line-height: 1.25;
+    padding: 0.75em 1em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table th:not([align]) {
+    text-align: left;
+}
+
+.table tr:nth-child(2n) {
+    background-color: #f9f9f9;
+}

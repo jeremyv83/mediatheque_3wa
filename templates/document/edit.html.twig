@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier un document | Administration MediaTehk{% endblock %}
+
+{% block body %}
+
+<nav class="panel">
+    <p class="panel-heading">Modifier un document</p>
+
+    {{ include('document/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
+
+    {{ include('document/_delete_form.html.twig') }}
+</nav>
+{% endblock %}

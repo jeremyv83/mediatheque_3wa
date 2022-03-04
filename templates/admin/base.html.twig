@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('admin') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('admin') }}
+        {% endblock %}
+    </head>
+    <body class="has-navbar-fixed-top">
+        {% include('admin/navbar.html.twig') %}
+        <section class="main-content columns is-fullheight">
+
+            <aside class="column administration is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">
+                <p class="menu-label is-hidden-touch">Administration</p>
+                <ul class="menu-list">
+                    <li>
+                        <a href="{{ path('admin_home') }}" class="">
+                            <span class="icon"><i class="fa fa-home"></i></span> Accueil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_documents') }}" class="">
+                            <span class="icon"><i class="fa-regular fa-file-lines"></i></span> Documents
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_rencontres') }}" class="">
+                            <span class="icon"><i class="fa-solid fa-users"></i></span> Rencontres
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_logs') }}" class="">
+                            <span class="icon"><i class="fa-solid fa-square-poll-horizontal"></i></span> Historique
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><i class="fa-solid fa-pen-to-square"></i></span> Gestion
+                        </a>
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('admin_manage_documents') }}">
+                                    <span class="icon is-small"><i class="fa-solid fa-file"></i></span> Documents
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_manage_users') }}">
+                                    <span class="icon is-small"><i class="fa-solid fa-user-group"></i></span> Utilisateurs
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('admin_manage_employees') }}">
+                                    <span class="icon is-small"><i class="fa-solid fa-briefcase"></i></span> Employés
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </aside>
+
+            <div class="container column is-12">
+                <div class="box">
+                    {% block body %}{% endblock %}
+                </div>
+            </div>
+        </section>
+        {% include('admin/footer.html.twig') %}
+    </body>
+</html>
