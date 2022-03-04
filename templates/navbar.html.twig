@@ -23,6 +23,10 @@
                 Documents
             </a>
 
+            <a class="navbar-item" href="{{ path('app_rencontre') }}">
+                Rencontres
+            </a>
+
             {% if is_granted("ROLE_MEMBER") %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
@@ -42,6 +46,9 @@
                     <hr class="navbar-divider">
                     <a class="navbar-item">
                         Formulaire de cession
+                    </a>
+                    <a href="{{ path('app_rencontre_particiations') }}" class="navbar-item">
+                        Mes rencontres
                     </a>
                 </div>
             </div>
