@@ -1,11 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}New Librarian{% endblock %}
+{% block title %}Ajouter un employé | Administration MediaTehk{% endblock %}
 
 {% block body %}
-    <h1>Create new Librarian</h1>
+<nav class="panel">
+    <p class="panel-heading">Ajouter un employé</p>
 
     {{ include('librarian/_form.html.twig') }}
 
-    <a href="{{ path('app_librarian_index') }}">back to list</a>
+</nav>
 {% endblock %}

@@ -5,7 +5,7 @@
 {% block body %}
     <nav class="panel">
         <div class="panel-heading">
-            <p class="panel-heading">Gestion des membres</p>
+            <p class="panel-heading">Gestion des utilisateurs</p>
             <a href="{{ path('app_member_new') }}" class="button mt-4 has-background-success has-text-white">Ajouter un membre</a>
         </div>
         <div class="panel-block">
@@ -34,8 +34,8 @@
                 <tr>
                     <th>{{ member.name }}</th>
                     <td>
-                        <a href="{{ path('app_member_show', {'id': member.id}) }}">show</a>
-                        <a href="{{ path('app_member_edit', {'id': member.id}) }}">edit</a>
+                        <a href="{{ path('app_member_show', {'id': member.id}) }}"><button class="button is-info has-text-white" ><i class="fa-solid fa-eye"></i></button></a>
+                        <a href="{{ path('app_member_edit', {'id': member.id}) }}"><button class="button is-warning has-text-white"><i class="fa-solid fa-pen"></i></button></a>
                     </td>
                 </tr>
             {% endfor %}

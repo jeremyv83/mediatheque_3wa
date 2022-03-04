@@ -1,11 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
-{% block title %}New Member{% endblock %}
+{% block title %}Créer un utilisateur | Administration MediaTehk{% endblock %}
 
 {% block body %}
-    <h1>Create new Member</h1>
+<nav class="panel">
+    <p class="panel-heading">Créer un utilisateur</p>
 
     {{ include('member/_form.html.twig') }}
 
-    <a href="{{ path('app_member_index') }}">back to list</a>
+    <button class="button m-3 is-info" href="{{ path('app_member_index') }}">Retour</button>
+</nav>
 {% endblock %}

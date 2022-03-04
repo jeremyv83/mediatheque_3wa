@@ -34,8 +34,8 @@
                 <tr>
                     <th>{{ librarian.name }}</th>
                     <td>
-                        <a href="{{ path('app_librarian_show', {'id': librarian.id}) }}">show</a>
-                        <a href="{{ path('app_librarian_edit', {'id': librarian.id}) }}">edit</a>
+                        <a href="{{ path('app_librarian_show', {'id': librarian.id}) }}"><button class="button is-info has-text-white" ><i class="fa-solid fa-eye"></i></button></a>
+                        <a href="{{ path('app_librarian_edit', {'id': librarian.id}) }}"><button class="button is-warning has-text-white"><i class="fa-solid fa-pen"></i></button></a>
                     </td>
                 </tr>
             {% endfor %}

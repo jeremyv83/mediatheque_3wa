@@ -26,8 +26,7 @@ class DocumentType extends AbstractType
             ->add('auteur', EntityType::class, [
                 'class' => 'App\Entity\Auteur',
                 'choice_label' => 'name',
-            ])
-            ->add('submit', SubmitType::class);
+            ]);
         ;
     }
 

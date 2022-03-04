@@ -52,8 +52,8 @@
                     <td>{{ document.className }}</td>
                     <td>{{ document.date|format_datetime(pattern='Y',locale='fr') }}</td>
                     <td>
-                        <a href="{{ path('app_document_show', {'id': document.id}) }}">show</a>
-                        <a href="{{ path('app_document_edit', {'id': document.id}) }}">edit</a>
+                        <a href="{{ path('app_document_show', {'id': document.id}) }}"><button class="button is-info has-text-white" ><i class="fa-solid fa-eye"></i></button></a>
+                        <a href="{{ path('app_document_edit', {'id': document.id}) }}"><button class="button is-warning has-text-white"><i class="fa-solid fa-pen"></i></button></a>
                     </td>
                 </tr>
             {% endfor %}

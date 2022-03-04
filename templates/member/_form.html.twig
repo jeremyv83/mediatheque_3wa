@@ -1,6 +1,28 @@
 {{ form_start(form) }}
-email :{{ form_widget(form.email) }}
-password: {{ form_widget(form.password) }}
-nom{{ form_widget(form.name) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+<div class="m-3">
+    <div class="field">
+        <label class="label">Nom</label>
+        <div class="control">
+            {{ form_widget(form.name, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true'}}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Email</label>
+        <div class="control has-icons-left has-icons-right">
+            {{ form_widget(form.email, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true'}}) }}
+            <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Mot de passe</label>
+        <div class="control">
+            {{ form_widget(form.password, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true'}, 'type' : 'password', 'value' : 'password123'}) }}
+        </div>
+    </div>
+    <button class="button mt-4 has-background-success has-text-white">{{ button_label|default('Sauvegarder') }}</button>
+</div>
 {{ form_end(form) }}

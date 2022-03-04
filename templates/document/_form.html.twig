@@ -1,11 +1,56 @@
 {{ form_start(form) }}
-Name : {{ form_widget(form.name) }}
-Quantity : {{ form_widget(form.quantity) }}
-Physique : {{ form_widget(form.physique) }}
-Fragile : {{ form_widget(form.fragile) }}
-Description : {{ form_widget(form.description) }}
-Date : {{ form_widget(form.date) }}
-Author : {{ form_widget(form.auteur) }}
-<button class="btn">{{ button_label|default('Save') }}</button>
+<div class="m-3">
+    <div class="field">
+        <label class="label">Nom</label>
+        <div class="control">
+            {{ form_widget(form.name, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true'}}) }}
+        </div>
+    </div>
 
+    <div class="field">
+        <label class="label">Quantité</label>
+        <div class="control">
+            {{ form_widget(form.quantity, {'attr' : {'class' : 'input is-medium', 'autofocus' : 'true'}, 'type' : 'number'}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Physique ?</label>
+        <div class="control">
+            {{ form_widget(form.physique, {'type' : 'checkbox'}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Fragile ?</label>
+        <div class="control">
+            {{ form_widget(form.fragile, {'type' : 'checkbox'}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Description</label>
+        <div class="control">
+            {{ form_widget(form.description, {'attr' : {'class' : 'textarea', 'autofocus' : 'true'}}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Date</label>
+        <div class="select is-multiple">
+            {{ form_widget(form.date, {'attr' : {'class' : '', 'autofocus' : 'true'}}) }}
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Subject</label>
+        <div class="control">
+            <div class="select">
+                {{ form_widget(form.auteur) }}
+            </div>
+        </div>
+    </div>
+
+    <button class="button mt-4 mb-4 has-background-success has-text-white">{{ button_label|default('Sauvegarder') }}</button>
+</div>
 {{ form_end(form) }}
