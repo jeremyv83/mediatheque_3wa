@@ -44,6 +44,7 @@ class MemberController extends AbstractController
                 $password
             );
             $member->setPassword($hashedpassword);
+            $member->setRoles(['ROLE_MEMBER']);
             $memberRepository->add($member);
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -19,7 +19,7 @@
         Accueil
       </a>
 
-      <a class="navbar-item" href="/documents">
+      <a class="navbar-item" href="{{ path('app_document_show_member') }}">
         Documents
       </a>
 
@@ -29,11 +29,11 @@
         </a>
 
         <div class="navbar-dropdown">
-          <a class="navbar-item">
+          <a href="" class="navbar-item">
             Emprunt
           </a>
-          <a class="navbar-item">
-            Réservation
+          <a href="{{ path('app_document_reserved') }}" class="navbar-item">
+            Réservations
           </a>
           <a class="navbar-item">
             Proposition d'achat

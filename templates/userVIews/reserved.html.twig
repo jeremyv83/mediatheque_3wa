@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if reserved is empty %}
+        <h1>Vous n'avez aucun document reservé</h1>
+    {% else %}
+    {% for document in reserved %}
+        {{ document.name }}
+        <form action="{{ path('app_document_unreserve', {'id': document.id}) }}" method="post">
+            <input type="submit" value="Delete">
+        </form>
+    {% endfor %}
+    {% endif %}
+{% endblock %}
+
+
